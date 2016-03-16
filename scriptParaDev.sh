@@ -389,10 +389,15 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
 				exit
 			fi #verificar se tem instalado
 			if [ $arch = "x86_64"  ];then
-				wget -c http://www.soundnodeapp.com/downloads/linux64/Soundnode-App.zip && unzip Soundnode*
+				cd ~/Downloads
+				while [ ! -e ~/Downloads/Soundnode-App.zip ];do
+            		echo "Baixando arquivo..."
+            		wget 2>> -c http://www.soundnodeapp.com/downloads/linux64/Soundnode-App.zip
+            	done
+				unzip Soundnode*
 				cd ~/Documentos && mkdir Soundnode && cd ~/Downloads && cp -R  Soundnode* -d ~/Documentos/Soundnode
 				ln -s ~/Documentos/Soundnode/Soundnode* /usr/bin/soundnode
-				cd /usr/share/icons && wget -c http://icons.iconarchive.com/icons/bokehlicia/pacifica/128/soundcloud-icon.png -O soundcloud.png
+				cd /usr/share/icons && wget 2>> -c http://icons.iconarchive.com/icons/bokehlicia/pacifica/128/soundcloud-icon.png -O soundcloud.png
 				cd /usr/share/applications && touch Soundnode.desktop
 				echo "[Desktop Entry]" >> Soundnode.desktop
 				echo "Name=Soundnode" >> Soundnode.desktop
@@ -403,10 +408,15 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
 				echo "Terminal=False" >> Soundnode.desktop
 				echo "Categories=AudioVideo" >> Soundnode.desktop
             elif [ $arch = "i686" ];then
-                wget -c http://www.soundnodeapp.com/downloads/linux32/Soundnode-App.zip && unzip Soundnode*
+            	cd ~/Downloads
+            	while [ ! -e ~/Downloads/Soundnode-App.zip ];do
+            		echo "Baixando arquivo..."
+            		wget 2>> -c http://www.soundnodeapp.com/downloads/linux32/Soundnode-App.zip
+            	done
+                unzip Soundnode*
                 cd ~/Documentos && mkdir Soundnode && cd ~/Downloads && cp -R  Soundnode* -d ~/Documentos/Soundnode
                 ln -s ~/Documentos/Soundnode/Soundnode* /usr/bin/soundnode
-                cd /usr/share/icons && wget -c http://icons.iconarchive.com/icons/bokehlicia/pacifica/128/soundcloud-icon.png -O soundcloud.png
+                cd /usr/share/icons && wget 2>> -c http://icons.iconarchive.com/icons/bokehlicia/pacifica/128/soundcloud-icon.png -O soundcloud.png
                 cd /usr/share/applications && touch Soundnode.desktop
                 echo "[Desktop Entry]" >> Soundnode.desktop
                 echo "Name=Soundnode" >> Soundnode.desktop
@@ -424,10 +434,15 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
                 exit
             fi #verificar sem tem instalado
             if [ $arch = "x86_64"  ];then
-                wget -c http://www.soundnodeapp.com/downloads/linux64/Soundnode-App.zip && unzip Soundnode*
+            	cd ~/Downloads
+            	while [ ! -e ~/Downloads/Soundnode-App.zip ];do
+            		echo "Baixando arquivo..."
+            		wget 2>> -c http://www.soundnodeapp.com/downloads/linux64/Soundnode-App.zip
+            	done
+                unzip Soundnode*
                 cd ~/Documentos && mkdir Soundnode && cd ~/Downloads && cp -R  Soundnode* -d ~/Documentos/Soundnode
                 ln -s ~/Documentos/Soundnode/Soundnode* /usr/bin/soundnode
-                cd /usr/share/icons && wget -c http://icons.iconarchive.com/icons/bokehlicia/pacifica/128/soundcloud-icon.png -O soundcloud.png
+                cd /usr/share/icons && wget 2>> -c http://icons.iconarchive.com/icons/bokehlicia/pacifica/128/soundcloud-icon.png -O soundcloud.png
                 cd /usr/share/applications && touch Soundnode.desktop
                 echo "[Desktop Entry]" >> Soundnode.desktop
                 echo "Name=Soundnode" >> Soundnode.desktop
@@ -438,10 +453,15 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
                 echo "Terminal=False" >> Soundnode.desktop
                 echo "Categories=AudioVideo" >> Soundnode.desktop
             elif [ $arch = "i686" ];then
-                wget -c http://www.soundnodeapp.com/downloads/linux32/Soundnode-App.zip && unzip Soundnode*
+            	cd ~/Downloads
+                while [ ! -e ~/Downloads/Soundnode-App.zip ];do
+            		echo "Baixando arquivo..."
+            		wget 2>> -c http://www.soundnodeapp.com/downloads/linux32/Soundnode-App.zip
+            	done
+            	unzip Soundnode*
                 cd ~/Documentos && mkdir Soundnode && cd ~/Downloads && cp -R  Soundnode* -d ~/Documentos/Soundnode
                 ln -s ~/Documentos/Soundnode/Soundnode* /usr/bin/soundnode
-                cd /usr/share/icons && wget -c http://icons.iconarchive.com/icons/bokehlicia/pacifica/128/soundcloud-icon.png -O soundcloud.png
+                cd /usr/share/icons && wget 2>> -c http://icons.iconarchive.com/icons/bokehlicia/pacifica/128/soundcloud-icon.png -O soundcloud.png
                 cd /usr/share/applications && touch Soundnode.desktop
                 echo "[Desktop Entry]" >> Soundnode.desktop
                 echo "Name=Soundnode" >> Soundnode.desktop
