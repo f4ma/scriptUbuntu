@@ -1,4 +1,5 @@
 #!/bin/bash
+# AUTHOR=Reni Alkimim Dantas
     mudar_voz () {
         numeroDaVoz=$[$RANDOM%2]
         vozesDisponiveis=(f m)
