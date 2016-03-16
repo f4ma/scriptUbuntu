@@ -67,7 +67,10 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
             if [ $arch = 'x86_64' ];then
                 echo "Instalando Google Chrome..."
                 cd $HOME/Downloads
-                wget -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+                while [ ! -e google-chrome*.deb ];do
+                	echo "Baixando..."
+                	wget 2>> -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+                done
                 dpkg -i google-chrome-stable_current_amd64.deb
                 apt-get install -f -y && dpkg --configure -a
                 echo "Google Chrome Instalado!"
@@ -76,7 +79,10 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
             elif [ $arch != 'x86_64' ];then
                 echo "Instalando Google Chrome..."
                 cd $HOME/Downloads
-                wget -c https://dl.google.com/linux/direct/google-chrome-stable_current_i386.deb
+                while [ ! -e google-chrome*.deb ];then
+                	echo "Baixando..."
+                	wget 2>> -c https://dl.google.com/linux/direct/google-chrome-stable_current_i386.deb
+                done
                 dpkg -i google-chrome-stable_current_i386.deb
                 apt-get install -f -y && dpkg --configure -a
                 echo "Google Chrome Instalado!"
@@ -87,7 +93,10 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
             if [ $arch = 'x86_64' ];then
                 echo "Instalando Google Chrome..."
                 cd $HOME/Downloads
-                wget -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+                while [ ! -e google-chrome*.deb ];do
+                	echo "Baixando..."
+                	wget 2>> -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+                done
                 dpkg -i google-chrome-stable_current_amd64.deb
                 apt-get install -f -y && dpkg --configure -a
                 echo "Google Chrome Instalado!"
@@ -96,7 +105,10 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
             elif [ $arch != 'x86_64' ];then
                 echo "Instalando Google Chrome..."
                 cd $HOME/Downloads
-                wget -c https://dl.google.com/linux/direct/google-chrome-stable_current_i386.deb
+                while [ ! -e google-chrome*.deb ];do
+                	echo "Baixando..."
+                	wget 2>> -c https://dl.google.com/linux/direct/google-chrome-stable_current_i386.deb
+                done
                 dpkg -i google-chrome-stable_current_i386.deb
                 apt-get install -f -y && dpkg --configure -a
                 echo "Google Chrome Instalado!"
@@ -273,13 +285,17 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
         read deseja_instalar_multisystem
         if [ $deseja_instalar_multisystem = 'S' ];then
             cd $HOME/Downloads
-            wget -c http://liveusb.info/multisystem/install-depot-multisystem.sh.tar.bz2
+            while [ ! -e install-depot*.*];do
+            	wget 2>> -c http://liveusb.info/multisystem/install-depot-multisystem.sh.tar.bz2
+            done
             tar -jxvf install-depot-multisystem.sh.tar.bz2
             chmod +x install-depot-multisystem.sh
             ./install-depot-multisystem.sh
         elif [ $deseja_instalar_multisystem = 's' ];then
             cd $HOME/Downloads
-            wget -c http://liveusb.info/multisystem/install-depot-multisystem.sh.tar.bz2
+            while [ ! -e install-depot*.*];do
+            	wget 2>> -c http://liveusb.info/multisystem/install-depot-multisystem.sh.tar.bz2
+            done
             tar -jxvf install-depot-multisystem.sh.tar.bz2
             chmod +x install-depot-multisystem.sh
             ./install-depot-multisystem.sh
@@ -299,7 +315,7 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
             if [ $arch = "x86_64" ];then
             	cd ~/Downloads
                 wget -c https://az764295.vo.msecnd.net/stable/db71ac615ddf9f33b133ff2536f5d33a77d4774e/VSCode-linux-x64-stable.zip
-                unzip VSCode* -d ~/Documentos/VSCode && rm VSCode*.zip
+                unzip -q VSCode* -d ~/Documentos/VSCode && rm VSCode*.zip
                 cp ~/Documentos/VSCode/VSCode*/resources/app/resources/linux/code.png /usr/share/icons/code.png
                 cd /usr/share/applications && touch visual-code.desktop
                 ln -s ~/Documentos/VSCode*/VSCode*/Code /usr/bin/vscode
@@ -317,7 +333,7 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
             elif [ $arch = "i686" ];then
             	cd ~/Downloads
                 wget -c https://az764295.vo.msecnd.net/stable/5b5f4db87c10345b9d5c8d0bed745bcad4533135/VSCode-linux-ia32-stable.zip
-                unzip VSCode* -d ~/Documentos/VSCode && rm VSCode*.zip 
+                unzip -q VSCode* -d ~/Documentos/VSCode && rm VSCode*.zip 
                 cp ~/Documentos/VSCode/VSCode*/resources/app/resources/linux/code.png /usr/share/icons/code.png
                 cd /usr/share/applications && touch visual-code.desktop
                 ln -s ~/Documentos/VSCode*/VSCode*/Code /usr/bin/vscode
@@ -342,7 +358,7 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
         	if [ $arch = "x86_64" ];then
         		cd ~/Downloads
                 wget -c https://az764295.vo.msecnd.net/stable/db71ac615ddf9f33b133ff2536f5d33a77d4774e/VSCode-linux-x64-stable.zip
-                unzip VSCode* -d ~/Documentos/VSCode && rm VSCode*.zip
+                unzip -q VSCode* -d ~/Documentos/VSCode && rm VSCode*.zip
                 cp ~/Documentos/VSCode/VSCode*/resources/app/resources/linux/code.png /usr/share/icons/code.png
                 cd /usr/share/applications && touch visual-code.desktop
                 ln -s ~/Documentos/VSCode*/VSCode*/Code /usr/bin/vscode
@@ -360,7 +376,7 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
             elif [ $arch = "i686" ];then
             	cd ~/Downloads
                 wget -c https://az764295.vo.msecnd.net/stable/5b5f4db87c10345b9d5c8d0bed745bcad4533135/VSCode-linux-ia32-stable.zip
-                unzip VSCode* -d ~/Documentos/VSCode && rm VSCode*.zip 
+                unzip -q VSCode* -d ~/Documentos/VSCode && rm VSCode*.zip 
                 cp ~/Documentos/VSCode/VSCode*/resources/app/resources/linux/code.png /usr/share/icons/code.png
                 cd /usr/share/applications && touch visual-code.desktop
                 ln -s ~/Documentos/VSCode*/VSCode*/Code /usr/bin/vscode
@@ -394,7 +410,7 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
             		echo "Baixando arquivo..."
             		wget 2>> -c http://www.soundnodeapp.com/downloads/linux64/Soundnode-App.zip
             	done
-				unzip Soundnode*
+				unzip -q Soundnode*
 				cd ~/Documentos && mkdir Soundnode && cd ~/Downloads && cp -R  Soundnode* -d ~/Documentos/Soundnode
 				ln -s ~/Documentos/Soundnode/Soundnode* /usr/bin/soundnode
 				cd /usr/share/icons && wget 2>> -c http://icons.iconarchive.com/icons/bokehlicia/pacifica/128/soundcloud-icon.png -O soundcloud.png
@@ -413,7 +429,7 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
             		echo "Baixando arquivo..."
             		wget 2>> -c http://www.soundnodeapp.com/downloads/linux32/Soundnode-App.zip
             	done
-                unzip Soundnode*
+                unzip -q Soundnode*
                 cd ~/Documentos && mkdir Soundnode && cd ~/Downloads && cp -R  Soundnode* -d ~/Documentos/Soundnode
                 ln -s ~/Documentos/Soundnode/Soundnode* /usr/bin/soundnode
                 cd /usr/share/icons && wget 2>> -c http://icons.iconarchive.com/icons/bokehlicia/pacifica/128/soundcloud-icon.png -O soundcloud.png
@@ -439,7 +455,7 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
             		echo "Baixando arquivo..."
             		wget 2>> -c http://www.soundnodeapp.com/downloads/linux64/Soundnode-App.zip
             	done
-                unzip Soundnode*
+                unzip -q Soundnode*
                 cd ~/Documentos && mkdir Soundnode && cd ~/Downloads && cp -R  Soundnode* -d ~/Documentos/Soundnode
                 ln -s ~/Documentos/Soundnode/Soundnode* /usr/bin/soundnode
                 cd /usr/share/icons && wget 2>> -c http://icons.iconarchive.com/icons/bokehlicia/pacifica/128/soundcloud-icon.png -O soundcloud.png
@@ -458,7 +474,7 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
             		echo "Baixando arquivo..."
             		wget 2>> -c http://www.soundnodeapp.com/downloads/linux32/Soundnode-App.zip
             	done
-            	unzip Soundnode*
+            	unzip -q Soundnode*
                 cd ~/Documentos && mkdir Soundnode && cd ~/Downloads && cp -R  Soundnode* -d ~/Documentos/Soundnode
                 ln -s ~/Documentos/Soundnode/Soundnode* /usr/bin/soundnode
                 cd /usr/share/icons && wget 2>> -c http://icons.iconarchive.com/icons/bokehlicia/pacifica/128/soundcloud-icon.png -O soundcloud.png
@@ -480,9 +496,17 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
         if [ $deseja_instalar_4kyoutube  = 'S'  ];then
             cd ~/Downloads
             if [ $arch = "x86_64" ];then
-                wget -c https://downloads.4kdownload.com/app/4kyoutubetomp3_3.0-1_amd64.deb && dpkg -i 4kyoutube*.deb
+            	while [ ! -e 4kyoutube*.deb ];do
+            		echo "Baixando..."
+            		wget 2>> -c https://downloads.4kdownload.com/app/4kyoutubetomp3_3.0-1_amd64.deb
+            	done
+                dpkg -i 4kyoutube*.deb
             elif [ $arch = "i686" ];then
-            	wget -c https://downloads.4kdownload.com/app/4kyoutubetomp3_3.0-1_i386.deb && dpkg -i 4kyoutube*.deb   
+            	while [ ! -e 4kyoutube*.deb ];do
+            		echo "Baixando..."
+					wget 2>> -c https://downloads.4kdownload.com/app/4kyoutubetomp3_3.0-1_i386.deb
+            	done 
+            	dpkg -i 4kyoutube*.deb   
             fi
             cd /usr/share/icons && wget -c http://icons.iconarchive.com/icons/raindropmemory/artificial-girl/128/Music-icon.png
             mv Music*.png music.png && cd /usr/share/applications && wget -c https://ghostbin.com/paste/mkerp/download
@@ -492,9 +516,17 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
         elif [ $deseja_instalar_4kyoutube = 's' ];then
             cd ~/Downloads
             if [ $arch = "x86_64" ];then
-                wget -c https://downloads.4kdownload.com/app/4kyoutubetomp3_3.0-1_amd64.deb && dpkg -i 4kyoutube*.deb
+            	while [ ! -e 4kyoutube*.deb ];do
+            		echo "Baixando..."
+            		wget 2>> -c https://downloads.4kdownload.com/app/4kyoutubetomp3_3.0-1_amd64.deb
+            	done
+                dpkg -i 4kyoutube*.deb
             elif [ $arch = "i686" ];then
-                wget -c https://downloads.4kdownload.com/app/4kyoutubetomp3_3.0-1_i386.deb && dpkg -i 4kyoutube*.deb   
+            	while [ ! -e 4kyoutube*.deb ];do
+            		echo "Baixando..."
+            		wget 2>> -c https://downloads.4kdownload.com/app/4kyoutubetomp3_3.0-1_i386.deb
+            	done
+                dpkg -i 4kyoutube*.deb   
             fi
             cd /usr/share/icons && wget -c http://icons.iconarchive.com/icons/raindropmemory/artificial-girl/128/Music-icon.png
             mv Music*.png music.png && cd /usr/share/applications && wget -c https://ghostbin.com/paste/mkerp/download
@@ -509,9 +541,17 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
         if [ $deseja_instalar_4kvideo = 'S' ];then
             cd ~/Downloads
             if [ $arch = "x86_64" ];then
-                wget -c https://downloads.4kdownload.com/app/4kvideodownloader_4.0-1_amd64.deb && dpkg -i 4kvideo*.deb
+            	while [ ! -e 4kvideodownloader*.deb ];do
+            		echo "Baixando..."
+            		wget 2>> -c https://downloads.4kdownload.com/app/4kvideodownloader_4.0-1_amd64.deb
+            	done
+                dpkg -i 4kvideo*.deb
             elif [ $arch = "i686" ];then
-                wget -c https://downloads.4kdownload.com/app/4kvideodownloader_4.0-1_i386.deb && dpkg -i 4kvideo*.deb
+            	while [ ! -e 4kvideodownloader*.deb ];do
+            		echo "Baixando.."
+            		wget 2>> -c https://downloads.4kdownload.com/app/4kvideodownloader_4.0-1_amd64.deb
+            	done
+                dpkg -i 4kvideo*.deb
             fi #verificar arch 4k video
             cd /usr/share/icons && wget -c http://icons.iconarchive.com/icons/pelfusion/folded-flat/128/Videos-icon.png
             mv Videos*.png video.png && cd /usr/share/applications && wget -c https://ghostbin.com/paste/muuwc
@@ -520,9 +560,17 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
         elif [ $deseja_instalar_4kvideo = 's' ];then
             cd ~/Downloads
             if [ $arch = "x86_64" ];then
-                wget -c https://downloads.4kdownload.com/app/4kvideodownloader_4.0-1_amd64.deb && dpkg -i 4kvideo*.deb
+            	while [ ! -e 4kvideodownloader*.deb ];do
+            		echo "Baixando..."
+            		wget 2>> -c https://downloads.4kdownload.com/app/4kvideodownloader_4.0-1_amd64.deb
+            	done
+                dpkg -i 4kvideo*.deb
             elif [ $arch = "i686" ];then
-                wget -c https://downloads.4kdownload.com/app/4kvideodownloader_4.0-1_i386.deb && dpkg -i 4kvideo*.deb
+            	while [ ! -e 4kvideodownloader*.deb ];do
+            		echo "Baixando..."
+            		wget 2>> -c https://downloads.4kdownload.com/app/4kvideodownloader_4.0-1_i386.deb
+            	done
+                dpkg -i 4kvideo*.deb
             fi #verificar arch 4k video
             cd /usr/share/icons && wget -c http://icons.iconarchive.com/icons/pelfusion/folded-flat/128/Videos-icon.png
             mv Videos*.png video.png && cd /usr/share/applications && wget -c https://ghostbin.com/paste/muuwc
