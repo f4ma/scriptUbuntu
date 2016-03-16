@@ -1,5 +1,4 @@
 #!/bin/bash
-# AUTHOR=Reni Alkimim Dantas
     mudar_voz () {
         numeroDaVoz=$[$RANDOM%2]
         vozesDisponiveis=(f m)
@@ -301,7 +300,7 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
             	cd ~/Downloads
                 wget -c https://az764295.vo.msecnd.net/stable/db71ac615ddf9f33b133ff2536f5d33a77d4774e/VSCode-linux-x64-stable.zip
                 unzip VSCode* -d ~/Documentos/VSCode && rm VSCode*.zip
-                cp ~/Documentos/VSCode/VSCode*/resources/app/resources/linux/code.png /usr/share/icons/vscode.png
+                cp ~/Documentos/VSCode/VSCode*/resources/app/resources/linux/code.png /usr/share/icons/code.png
                 cd /usr/share/applications && touch visual-code.desktop
                 ln -s ~/Documentos/VSCode*/VSCode*/Code /usr/bin/vscode
                 echo "[Desktop Entry]" >> visual-code.desktop
@@ -319,7 +318,7 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
             	cd ~/Downloads
                 wget -c https://az764295.vo.msecnd.net/stable/5b5f4db87c10345b9d5c8d0bed745bcad4533135/VSCode-linux-ia32-stable.zip
                 unzip VSCode* -d ~/Documentos/VSCode && rm VSCode*.zip 
-                cp ~/Documentos/VSCode/VSCode*/resources/app/resources/linux/code.png /usr/share/icons/vscode.png
+                cp ~/Documentos/VSCode/VSCode*/resources/app/resources/linux/code.png /usr/share/icons/code.png
                 cd /usr/share/applications && touch visual-code.desktop
                 ln -s ~/Documentos/VSCode*/VSCode*/Code /usr/bin/vscode
                 echo "[Desktop Entry]" >> visual-code.desktop
@@ -344,7 +343,7 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
         		cd ~/Downloads
                 wget -c https://az764295.vo.msecnd.net/stable/db71ac615ddf9f33b133ff2536f5d33a77d4774e/VSCode-linux-x64-stable.zip
                 unzip VSCode* -d ~/Documentos/VSCode && rm VSCode*.zip
-                cp ~/Documentos/VSCode/VSCode*/resources/app/resources/linux/code.png /usr/share/icons/vscode.png
+                cp ~/Documentos/VSCode/VSCode*/resources/app/resources/linux/code.png /usr/share/icons/code.png
                 cd /usr/share/applications && touch visual-code.desktop
                 ln -s ~/Documentos/VSCode*/VSCode*/Code /usr/bin/vscode
                 echo "[Desktop Entry]" >> visual-code.desktop
@@ -362,7 +361,7 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
             	cd ~/Downloads
                 wget -c https://az764295.vo.msecnd.net/stable/5b5f4db87c10345b9d5c8d0bed745bcad4533135/VSCode-linux-ia32-stable.zip
                 unzip VSCode* -d ~/Documentos/VSCode && rm VSCode*.zip 
-                cp ~/Documentos/VSCode/VSCode*/resources/app/resources/linux/code.png /usr/share/icons/vscode.png
+                cp ~/Documentos/VSCode/VSCode*/resources/app/resources/linux/code.png /usr/share/icons/code.png
                 cd /usr/share/applications && touch visual-code.desktop
                 ln -s ~/Documentos/VSCode*/VSCode*/Code /usr/bin/vscode
                 echo "[Desktop Entry]" >> visual-code.desktop
