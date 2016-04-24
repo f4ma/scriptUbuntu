@@ -1,4 +1,30 @@
 #!/bin/bash
+    #Instalamos o GDEBI para executar .deb e o Axel para um download mais rápido porém estou sem tempo de adicionar para todos os down's
+    instalar_necessario () {
+        #------------------------------------------------------------------#
+        apt-get update #Atualizar repositórios
+        #------------------------------------------------------------------#
+        verifi_gdebi=$(which gdebi)
+        if [ $verifi_gdebi = "/usr/bin/gdebi" ];then
+            echo "Você já tem o GDebi Instalado!"
+        else
+            while [ $verifi_axel != "/usr/bin/axel" ];do
+                echo "Estamos instalando uma das nossas dependências necessárias"
+                apt-get install -y gdebi
+            done
+        fi #verificar se tem GDEBI instalado
+        #------------------------------------------------------------------#
+        verifi_axel=$(which axel)
+        if [ $verifi_axel = "/usr/bin/axel" ];then
+            echo "Você já tem o Axel Instalado!"
+        else
+            while [ $verifi_axel != "/usr/bin/axel" ];do
+                echo "Estamos instalando uma das nossas dependências necessárias"
+                apt-get install -y axel
+            done
+        fi #verificar se tem AXEL instalado
+        #------------------------------------------------------------------#
+    }
     mudar_voz () {
         numeroDaVoz=$[$RANDOM%2]
         vozesDisponiveis=(f m)
@@ -12,6 +38,7 @@
     algoDaVoz=1
     #função
     mudar_voz
+    instalar_necessario
     #checar root
     if [ $user = root ];then
         #verificar se existe o espeak
@@ -27,7 +54,6 @@
             echo "Temos que instalar uma dependência do script."
             apt-get install espeak -y
             clear
-            main
         fi
         #voz, necessária do espeak
         clear
@@ -69,7 +95,7 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
                 cd $HOME/Downloads
                 while [ ! -e google-chrome*.deb ];do
                 	echo "Baixando..."
-                	wget 2>> -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+                	wget 2>> https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
                 done
                 dpkg -i google-chrome-stable_current_amd64.deb
                 apt-get install -f -y && dpkg --configure -a
@@ -79,9 +105,9 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
             elif [ $arch != 'x86_64' ];then
                 echo "Instalando Google Chrome..."
                 cd $HOME/Downloads
-                while [ ! -e google-chrome*.deb ];then
+                while [ ! -e google-chrome*.deb ];do
                 	echo "Baixando..."
-                	wget 2>> -c https://dl.google.com/linux/direct/google-chrome-stable_current_i386.deb
+                	wget 2>> https://dl.google.com/linux/direct/google-chrome-stable_current_i386.deb
                 done
                 dpkg -i google-chrome-stable_current_i386.deb
                 apt-get install -f -y && dpkg --configure -a
@@ -95,7 +121,7 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
                 cd $HOME/Downloads
                 while [ ! -e google-chrome*.deb ];do
                 	echo "Baixando..."
-                	wget 2>> -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+                	wget 2>> https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
                 done
                 dpkg -i google-chrome-stable_current_amd64.deb
                 apt-get install -f -y && dpkg --configure -a
@@ -107,7 +133,7 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
                 cd $HOME/Downloads
                 while [ ! -e google-chrome*.deb ];do
                 	echo "Baixando..."
-                	wget 2>> -c https://dl.google.com/linux/direct/google-chrome-stable_current_i386.deb
+                	wget 2>> https://dl.google.com/linux/direct/google-chrome-stable_current_i386.deb
                 done
                 dpkg -i google-chrome-stable_current_i386.deb
                 apt-get install -f -y && dpkg --configure -a
@@ -134,12 +160,22 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
         echo "Quer instalar indicador de pesquisa? "
         read deseja_instalar_synapse
         if [ $deseja_instalar_synapse = 'S' ];then
+            ver_ubuntu=$(cat /etc/issue.net | cut -c 8-13)
+            if [ $ver_ubuntu = "Xenial"  ];then
+                echo "Repositório não compátivel ainda"
+                exit
+            fi #versão do ubuntu
             echo "Instalando Synapse Indicator..."
-            add-apt-repository ppa:noobslab/apps -y && apt-get update && apt-get install -y indicator-synapse
+            2>> add-apt-repository ppa:noobslab/apps -y && apt-get update && apt-get install -y indicator-synapse
             echo "Indicador de pesquisa Instalado!"
         elif [ $deseja_instalar_synapse = 's' ];then
+            ver_ubuntu=$(cat /etc/issue.net | cut -c 8-13)
+            if [ $ver_ubuntu = "Xenial"  ];then
+                echo "Repositório não compátivel ainda"
+                exit
+            fi #versão do ubuntu
             echo "Instalando Synapse Indicator..."
-            add-apt-repository ppa:noobslab/apps -y && apt-get update && apt-get install -y indicator-synapse
+            2>> add-apt-repository ppa:noobslab/apps -y && apt-get update && apt-get install -y indicator-synapse
             echo "Indicador de pesquisa Instalado!"
         else
             echo "Não vamos instalar indicador de pesquisa."
@@ -148,6 +184,11 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
         read deseja_instalar_conky
         if [ $deseja_instalar_conky = 'S' ];
             then
+            ver_ubuntu=$(cat /etc/issue.net | cut -c 8-13)
+            if [ $ver_ubuntu = "Xenial"  ];then
+                echo "Repositório não compátivel ainda"
+                exit
+            fi #versão do ubuntu
             if [ $deseja_instalar_synapse 'S' ];then
                 echo "Instalando Conky Manager..."
                 apt-get install -y conky-manager
@@ -166,6 +207,11 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
                 echo "Conky Manager Instalado!"
             fi
         elif [ $deseja_instalar_conky = 's' ];then
+            ver_ubuntu=$(cat /etc/issue.net | cut -c 8-13)
+            if [ $ver_ubuntu = "Xenial"  ];then
+                echo "Repositório não compátivel ainda"
+                exit
+            fi #versão do ubuntu
             if [ $deseja_instalar_synapse = 'S' ];then
                 echo "Instalando Conky Manager..."
                 apt-get install -y conky-manager
@@ -395,102 +441,6 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
         else 
         	echo "Não vamos instalar o Visual Code"
        	fi #VSCode
-
-		echo "Quer instalar o Soundnode? "
-		read deseja_instalar_soundnode
-		if [ $deseja_instalar_soundnode = 'S'  ];then
-			cd /usr/share/applications
-			if [ -e Soundnode.desktop  ];then
-				echo "Você já me tem instalado"
-				exit
-			fi #verificar se tem instalado
-			if [ $arch = "x86_64"  ];then
-				cd ~/Downloads
-				while [ ! -e ~/Downloads/Soundnode-App.zip ];do
-            		echo "Baixando arquivo..."
-            		wget 2>> -c http://www.soundnodeapp.com/downloads/linux64/Soundnode-App.zip
-            	done
-				unzip -q Soundnode*
-				cd ~/Documentos && mkdir Soundnode && cd ~/Downloads && cp -R  Soundnode* -d ~/Documentos/Soundnode
-				ln -s ~/Documentos/Soundnode/Soundnode* /usr/bin/soundnode
-				cd /usr/share/icons && wget 2>> -c http://icons.iconarchive.com/icons/bokehlicia/pacifica/128/soundcloud-icon.png -O soundcloud.png
-				cd /usr/share/applications && touch Soundnode.desktop
-				echo "[Desktop Entry]" >> Soundnode.desktop
-				echo "Name=Soundnode" >> Soundnode.desktop
-				echo "Comment=Um cliente para o Soundcloud" >> Soundnode.desktop
-				echo "Exec=soundnode" >> Soundnode.desktop
-				echo "Icon=/usr/share/icons/soundcloud.png" >> Soundnode.desktop
-				echo "Type=Application" >> Soundnode.desktop
-				echo "Terminal=False" >> Soundnode.desktop
-				echo "Categories=AudioVideo" >> Soundnode.desktop
-            elif [ $arch = "i686" ];then
-            	cd ~/Downloads
-            	while [ ! -e ~/Downloads/Soundnode-App.zip ];do
-            		echo "Baixando arquivo..."
-            		wget 2>> -c http://www.soundnodeapp.com/downloads/linux32/Soundnode-App.zip
-            	done
-                unzip -q Soundnode*
-                cd ~/Documentos && mkdir Soundnode && cd ~/Downloads && cp -R  Soundnode* -d ~/Documentos/Soundnode
-                ln -s ~/Documentos/Soundnode/Soundnode* /usr/bin/soundnode
-                cd /usr/share/icons && wget 2>> -c http://icons.iconarchive.com/icons/bokehlicia/pacifica/128/soundcloud-icon.png -O soundcloud.png
-                cd /usr/share/applications && touch Soundnode.desktop
-                echo "[Desktop Entry]" >> Soundnode.desktop
-                echo "Name=Soundnode" >> Soundnode.desktop
-                echo "Comment=Um cliente para o Soundcloud" >> Soundnode.desktop
-                echo "Exec=soundnode" >> Soundnode.desktop
-                echo "Icon=/usr/share/icons/soundcloud.png" >> Soundnode.desktop
-                echo "Type=Application" >> Soundnode.desktop
-                echo "Terminal=False" >> Soundnode.desktop
-                echo "Categories=AudioVideo" >> Soundnode.desktop
-			fi #arch SOUNDNODE
-        elif [ $deseja_instalar_soundnode = 's' ];then
-            cd /usr/share/applications
-            if [ -e Soundnode.desktop ];then
-                echo "Você já me tem instalado"
-                exit
-            fi #verificar sem tem instalado
-            if [ $arch = "x86_64"  ];then
-            	cd ~/Downloads
-            	while [ ! -e ~/Downloads/Soundnode-App.zip ];do
-            		echo "Baixando arquivo..."
-            		wget 2>> -c http://www.soundnodeapp.com/downloads/linux64/Soundnode-App.zip
-            	done
-                unzip -q Soundnode*
-                cd ~/Documentos && mkdir Soundnode && cd ~/Downloads && cp -R  Soundnode* -d ~/Documentos/Soundnode
-                ln -s ~/Documentos/Soundnode/Soundnode* /usr/bin/soundnode
-                cd /usr/share/icons && wget 2>> -c http://icons.iconarchive.com/icons/bokehlicia/pacifica/128/soundcloud-icon.png -O soundcloud.png
-                cd /usr/share/applications && touch Soundnode.desktop
-                echo "[Desktop Entry]" >> Soundnode.desktop
-                echo "Name=Soundnode" >> Soundnode.desktop
-                echo "Comment=Um cliente para o Soundcloud" >> Soundnode.desktop
-                echo "Exec=soundnode" >> Soundnode.desktop
-                echo "Icon=/usr/share/icons/soundcloud.png" >> Soundnode.desktop
-                echo "Type=Application" >> Soundnode.desktop
-                echo "Terminal=False" >> Soundnode.desktop
-                echo "Categories=AudioVideo" >> Soundnode.desktop
-            elif [ $arch = "i686" ];then
-            	cd ~/Downloads
-                while [ ! -e ~/Downloads/Soundnode-App.zip ];do
-            		echo "Baixando arquivo..."
-            		wget 2>> -c http://www.soundnodeapp.com/downloads/linux32/Soundnode-App.zip
-            	done
-            	unzip -q Soundnode*
-                cd ~/Documentos && mkdir Soundnode && cd ~/Downloads && cp -R  Soundnode* -d ~/Documentos/Soundnode
-                ln -s ~/Documentos/Soundnode/Soundnode* /usr/bin/soundnode
-                cd /usr/share/icons && wget 2>> -c http://icons.iconarchive.com/icons/bokehlicia/pacifica/128/soundcloud-icon.png -O soundcloud.png
-                cd /usr/share/applications && touch Soundnode.desktop
-                echo "[Desktop Entry]" >> Soundnode.desktop
-                echo "Name=Soundnode" >> Soundnode.desktop
-                echo "Comment=Um cliente para o Soundcloud" >> Soundnode.desktop
-                echo "Exec=soundnode" >> Soundnode.desktop
-                echo "Icon=/usr/share/icons/soundcloud.png" >> Soundnode.desktop
-                echo "Type=Application" >> Soundnode.desktop
-                echo "Terminal=False" >> Soundnode.desktop
-                echo "Categories=AudioVideo" >> Soundnode.desktop
-            fi #arch SOUNDNODE
-        else
-            echo "Não vamos instalar o Soundnode"
-		fi #SOUNDNODE
         echo "Quer instalar o 4K Youtube to mp3? "
         read deseja_instalar_4kyoutube
         if [ $deseja_instalar_4kyoutube  = 'S'  ];then
@@ -508,8 +458,8 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
             	done 
             	dpkg -i 4kyoutube*.deb   
             fi
-            cd /usr/share/icons && wget -c http://icons.iconarchive.com/icons/raindropmemory/artificial-girl/128/Music-icon.png
-            mv Music*.png music.png && cd /usr/share/applications && wget -c https://ghostbin.com/paste/mkerp/download
+            cd /usr/share/icons && wget 2>> -c http://icons.iconarchive.com/icons/raindropmemory/artificial-girl/128/Music-icon.png
+            mv Music*.png music.png && cd /usr/share/applications && wget 2>> -c https://ghostbin.com/paste/mkerp/download
             mv download 4kyoutubetomp3.desktop
             echo "4K Youtube to m3p Instalado!"
             #verificar arch 4k youtube
@@ -528,57 +478,66 @@ Se você quiser pode usar o Ctrl+C para cancelar o script à qualquer momento"
             	done
                 dpkg -i 4kyoutube*.deb   
             fi
-            cd /usr/share/icons && wget -c http://icons.iconarchive.com/icons/raindropmemory/artificial-girl/128/Music-icon.png
-            mv Music*.png music.png && cd /usr/share/applications && wget -c https://ghostbin.com/paste/mkerp/download
+            cd /usr/share/icons && wget 2>> -c http://icons.iconarchive.com/icons/raindropmemory/artificial-girl/128/Music-icon.png
+            mv Music*.png music.png && cd /usr/share/applications && wget 2>> -c https://ghostbin.com/paste/mkerp/download
             mv download 4kyoutubetomp3.desktop
             echo "4K Youtube to m3p Instalado!"
             #verificar arch 4k youtube
         else
             echo "Não vamos instalar o 4K Youtube to mp3"
         fi #4K YOUTUBE MP3
-        echo "Quer instalar o 4K Video Downloader? "
-        read deseja_instalar_4kvideo
-        if [ $deseja_instalar_4kvideo = 'S' ];then
+
+        # INSTALAR GEANY
+        echo "Quer instalar o Geany? "
+        read deseja_instalar_geany
+
+        if [ $deseja_instalar_geany = 'S' ];then
+            apt-get update && apt-get install -y geany && echo "Geany Instalado!"
+        elif [ $deseja_instalar_geany = 's' ];then
+            apt-get update && apt-get install -y geany && echo "Geany Instalado!"
+        else
+            echo "Não vamos instalar o Geany"
+        fi #DESEJA INSTALAR GEANY
+
+
+        # INSTALAR SKYPE 
+
+        echo "Quer instalar o Skype?"
+        read deseja_instalar_skype
+
+        if [ $deseja_instalar_skype = 'S'  ];then
+            wget http://download.skype.com/linux/skype-ubuntu-precise_4.3.0.37-1_i386.deb -O skype.deb
+            dpkg -i skype.deb
+            apt-get -f -y install
+            echo "Skype Instalado!"
+        elif [ $deseja_instalar_skype = 's' ];then
+            wget http://download.skype.com/linux/skype-ubuntu-precise_4.3.0.37-1_i386.deb -O skype.deb
+            dpkg -i skype.deb
+            apt-get -f -y install
+            echo "Skype Instalado!"
+        else
+            echo "Não vamos instalar o Skype"
+        fi #DESEJA INSTALAR SKYPE
+        
+        #OUTROS SCRIPST MEU
+        echo "Quer baixar os outros script's? "
+        read deseja_baixar_scripts
+        if [ $deseja_baixar_scripts = 'S' ];then
             cd ~/Downloads
-            if [ $arch = "x86_64" ];then
-            	while [ ! -e 4kvideodownloader*.deb ];do
-            		echo "Baixando..."
-            		wget 2>> -c https://downloads.4kdownload.com/app/4kvideodownloader_4.0-1_amd64.deb
-            	done
-                dpkg -i 4kvideo*.deb
-            elif [ $arch = "i686" ];then
-            	while [ ! -e 4kvideodownloader*.deb ];do
-            		echo "Baixando.."
-            		wget 2>> -c https://downloads.4kdownload.com/app/4kvideodownloader_4.0-1_amd64.deb
-            	done
-                dpkg -i 4kvideo*.deb
-            fi #verificar arch 4k video
-            cd /usr/share/icons && wget -c http://icons.iconarchive.com/icons/pelfusion/folded-flat/128/Videos-icon.png
-            mv Videos*.png video.png && cd /usr/share/applications && wget -c https://ghostbin.com/paste/muuwc
-            mv muuwc 4kvideodownloader.desktop
-            echo "4K video downloader Instalado!"
-        elif [ $deseja_instalar_4kvideo = 's' ];then
+            while [ ! -e movepdf.sh ];do
+                echo "Baixando..."
+                axel http://pastebin.com/download/pKrVNAu3 -o modepdf.sh
+                chmod +x movepdf.sh
+            done
+        elif [ $deseja_baixar_scripts = 's' ];then
             cd ~/Downloads
-            if [ $arch = "x86_64" ];then
-            	while [ ! -e 4kvideodownloader*.deb ];do
-            		echo "Baixando..."
-            		wget 2>> -c https://downloads.4kdownload.com/app/4kvideodownloader_4.0-1_amd64.deb
-            	done
-                dpkg -i 4kvideo*.deb
-            elif [ $arch = "i686" ];then
-            	while [ ! -e 4kvideodownloader*.deb ];do
-            		echo "Baixando..."
-            		wget 2>> -c https://downloads.4kdownload.com/app/4kvideodownloader_4.0-1_i386.deb
-            	done
-                dpkg -i 4kvideo*.deb
-            fi #verificar arch 4k video
-            cd /usr/share/icons && wget -c http://icons.iconarchive.com/icons/pelfusion/folded-flat/128/Videos-icon.png
-            mv Videos*.png video.png && cd /usr/share/applications && wget -c https://ghostbin.com/paste/muuwc
-            mv muuwc 4kvideodownloader.desktop
-            echo "4K video downloader Instalado!"
-        else 
-            echo "Não vamos instalar o 4K video downloader"
-        fi #4K VIDEO DOWNLOADER
+            while [ ! -e movepdf.sh ];do
+                echo "Baixando..."
+                axel http://pastebin.com/download/pKrVNAu3 -o movepdf.sh
+            done
+        else
+            echo "Não vamos baixar então"
+        fi #deseja_baixar_scripts
         echo "Quer fazer pesquisa de algum programa? "
         read quer_pesquisar
         if [ $quer_pesquisar = 'S' ];then
