@@ -59,12 +59,12 @@ google_chrome () {
 		dialog --title "Instalar do Google Chrome" --yesno "Você deseja instalar o Google Chrome? " 10 35
 		if [ $? == 0 ];then
 			if [ $arch == "x86_64" ];then
-				dialog --title "Instalador" --msgbox "Instalando..."
+				dialog --title "Instalador" --msgbox "Instalando..." 10 25
 				wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O google-chrome.deb
 				dpkg -i google-chrome.deb
 				apt-get -f install
 				apt-get update
-				dialog --title "Aviso" --msgbox "Google Chrome instalado!"
+				dialog --title "Aviso" --msgbox "Google Chrome instalado!" 10 25
 			else
 				dialog --title "Erro" --msgbox "Verifique o site do fornecedor do programa para obter suporte para sua plataforma" 10 25
 			fi
@@ -80,9 +80,9 @@ sublime_text () {
 	else
 		dialog --title "Instalador do Sublime Text" --yesno "Você deseja instalar o Sublime Text? " 10 35
 		if [ $? == 0 ];then
-			dialog --title "Instalador" --msgbox "Instalando..."
+			dialog --title "Instalador" --msgbox "Instalando..." 10 25
 			add-apt-repository -y ppa:webupd8team/sublime-text-3 && apt-get update && apt-get install -y sublime-text-installer
-			dialog --title "Aviso" --msgbox "Sublime Text instalado!"
+			dialog --title "Aviso" --msgbox "Sublime Text instalado!" 10 25
 		fi
 	fi
 	menu_principal
@@ -95,11 +95,11 @@ spotify () {
 	else
 		dialog --title "Instalador do Spotify" --yesno "Você deseja instalar o Spotify?" 10 35
 		if [ $? == 0 ];then
-			dialog --title "Instalador" --msgbox "Instalando"
+			dialog --title "Instalador" --msgbox "Instalando" 10 25
 			apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886
             echo deb http://repository.spotify.com stable non-free | tee /etc/apt/sources.list.d/spotify.list
             apt-get update && apt-get install -y spotify-client
-            dialog --title "Aviso" --msgbox "Spotify instalado!"
+            dialog --title "Aviso" --msgbox "Spotify instalado!" 10 25
 		fi
 	fi
 	menu_principal
