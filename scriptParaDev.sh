@@ -112,7 +112,6 @@ skype () {
 				instPRG=4
 			elif [ $arch != "x86_64" ];then
 				dialog --title "Instalador" --msgbox "Instalando..." 10 25
-				dialog --title "Instalador" --msgbox "Instalando..." 10 25
 				wget https://download.skype.com/linux/skype-ubuntu-precise_4.3.0.37-1_i386.deb -O skype.deb > /dev/null 2>&1
 				dpkg -i sype.deb && apt-get update > /dev/null 2>&1
 				dialog --title "Aviso" --msgbox "Skype instalado!" 10 25
