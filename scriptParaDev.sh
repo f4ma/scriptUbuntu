@@ -24,8 +24,14 @@ username=${username^} #converte a primeira letra para maiúscula para assimilar-
 # $? = 0 (SIM) : $? = 1 (NÃO) : A ; L 
 
 basico_do_instalador () {
+	espeak_vrf=$(which espeak)
 	#Dialog para fazer a interface gráfica pro usuário
+	zenity --info --title="Aviso" --text="Instalando dependências necessárias..."
 	apt-get update && apt get install dialog -y > /dev/null 2>&1
+	if [ $espeak_vrf == "/usr/bin/espeak" ];then
+		dialog --title "Aviso" --msgbox "Dependências necessárias foram instaladas!"
+		menu_principal
+	fi
 }
 
 google_chrome () {
